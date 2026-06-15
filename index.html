@@ -182,7 +182,8 @@
     .comparison .hero-body,
     .method .hero-body,
     .results .hero-body,
-    .qualitative .hero-body {
+    .qualitative .hero-body,
+    .embodied-planning .hero-body {
       padding-top: 2.5rem;
       padding-bottom: 2.5rem;
     }
@@ -868,6 +869,40 @@
 </div>
 
 
+  </div>
+</section>
+
+<section class="hero embodied-planning">
+  <div class="container is-max-widescreen">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Embodied Planning with Predicted Scene Graphs</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-11">
+          <img src="static/images/emb_planning.svg"
+               class="interpolation-image wide-figure"
+               alt="Embodied planning with predicted scene graphs">
+        </div>
+      </div>
+
+      <div class="container is-max-desktop section-text-after-figure">
+        <div class="content has-text-justified">
+          <p>
+            Furthermore, we qualitatively demonstrate how the generated scene graph can serve as an
+            explicit grounding representation for embodied planning in 3D scenes. In this example,
+            a robot is instructed to navigate from a safe base pose and open the window closest to the
+            desk with the most monitors. Given the predicted graph, GPT-5.4 identifies the monitor-rich
+            workspace by reasoning over desk-monitor relations, selects the relevant window, and maps the
+            resulting plan back into 3D using predicted object centers, bounding boxes, and spatial
+            relationships. It avoids large obstacles, chooses reachable manipulation poses, and identifies
+            movable chairs that obstruct the path or target interaction. This illustrates how structured
+            scene-graph outputs can support compositional spatial queries such as "the desk with the most
+            monitors," "the closest window," or "chairs blocking the route," and convert them into
+            grounded navigation and manipulation steps.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
