@@ -516,8 +516,8 @@
       }
     }
     .radar-figure {
-      width: 62%;
-      max-width: 620px;
+      width: 100%;
+      max-width: none;
     }
 
     @media screen and (max-width: 768px) {
@@ -842,36 +842,6 @@
   </div>
 </section>
 
-<section class="hero results">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Main Results</h2>
-
-
-  <div class="columns is-centered">
-    <div class="column is-11">
-      <img src="static\images\graphwrit3r_radar_rio10_clean.svg"
-           class="interpolation-image wide-figure radar-figure"
-           alt="Scene graph evaluation on RIO10">
-    </div>
-  </div>
-
-  <div class="container is-max-desktop section-text-after-figure">
-    <div class="content has-text-justified">
-      <p>
-        On RIO10, GraphWrit3R achieves the best overall scene graph generation performance across
-        object, predicate, and triplet recall. Notably, it does so while remaining GT-free at inference
-        time: unlike methods that are given ground-truth object boxes, GraphWrit3R must jointly detect
-        objects, classify them, and predict their relationships directly from the 3D input.
-      </p>
-    </div>
-  </div>
-</div>
-
-
-  </div>
-</section>
-
 <section class="hero embodied-planning">
   <div class="container is-max-widescreen">
     <div class="hero-body">
@@ -899,6 +869,33 @@
             scene-graph outputs can support compositional spatial queries such as "the desk with the most
             monitors," "the closest window," or "chairs blocking the route," and convert them into
             grounded navigation and manipulation steps.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero results">
+  <div class="container is-max-widescreen">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Main Results</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-11">
+          <img src="static\images\graphwrit3r_results_bars_with_detection_v3.svg"
+               class="interpolation-image wide-figure radar-figure"
+               alt="Scene graph evaluation on RIO10">
+        </div>
+      </div>
+
+      <div class="container is-max-desktop section-text-after-figure">
+        <div class="content has-text-justified">
+          <p>
+            On RIO10, GraphWrit3R achieves the best overall scene graph generation performance across
+            object, predicate, and triplet recall. Notably, it does so while remaining GT-free at inference
+            time: unlike methods that are given ground-truth object boxes, GraphWrit3R must jointly detect
+            objects, classify them, and predict their relationships directly from the 3D input. Furthermore, strong object detection results on ScanNet20 show that relational supervision provides a useful learning signal for object grounding and localization.
           </p>
         </div>
       </div>
