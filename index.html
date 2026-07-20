@@ -768,45 +768,30 @@
   </div>
 </section>
 
-<section class="hero method">
+<section class="hero results">
   <div class="container is-max-widescreen">
     <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Method</h2>
+      <h2 class="title is-3 has-text-centered">Main Results</h2>
 
+      <div class="columns is-centered">
+        <div class="column is-11">
+          <img src="static\images\graphwrit3r_results_bars_with_detection_v3.svg"
+               class="interpolation-image wide-figure radar-figure"
+               alt="Scene graph evaluation on RIO10">
+        </div>
+      </div>
 
-  <div class="columns is-centered">
-    <div class="column is-11">
-      <img src="static/images/fig3_method-1.svg"
-           class="interpolation-image wide-figure"
-           alt="GraphWrit3R method overview">
+      <div class="container is-max-desktop section-text-after-figure">
+        <div class="content has-text-justified">
+          <p>
+            On RIO10, GraphWrit3R achieves the best overall scene graph generation performance across
+            object, predicate, and triplet recall. Notably, it does so while remaining GT-free at inference
+            time: unlike methods that are given ground-truth object boxes, GraphWrit3R must jointly detect
+            objects, classify them, and predict their relationships directly from the 3D input. Furthermore, strong object detection results on ScanNet20 show that relational supervision provides a useful learning signal for object grounding and localization.
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="container is-max-desktop section-text-after-figure">
-    <div class="content has-text-justified">
-      <p>
-        <strong>GraphWrit3R</strong> takes a 3D scene represented as a point cloud, Gaussian Splats,
-        or both, and directly generates a complete 3D scene graph as a structured JSON script.
-        The output contains detected objects, their semantic labels, 3D locations, bounding boxes,
-        orientations, and directed subject-predicate-object relationships. Unlike prior multi-stage
-        pipelines, GraphWrit3R does not first build explicit object proposals or intermediate graph
-        structures, but performs scene graph generation in a single end-to-end latent pipeline.
-      </p>
-
-      <p>
-        Point clouds are encoded by <strong>Sonata</strong>, while Gaussian Splats are encoded by
-        <strong>Chorus</strong>. Both encoders produce sparse voxel tokens on a shared grid, where
-        co-located features can be fused and projected into the input embedding space of an LLM,
-        which autoregressively writes the final JSON scene graph. To make the two modalities compatible,
-        we train with a per-voxel cross-modal alignment loss combining InfoNCE, cosine, and MSE
-        feature-matching terms, enabling one set of weights to operate with point clouds, Gaussian
-        Splats, or both at inference time.
-      </p>
-    </div>
-  </div>
-</div>
-
-
   </div>
 </section>
 
@@ -876,30 +861,45 @@
   </div>
 </section>
 
-<section class="hero results">
+<section class="hero method">
   <div class="container is-max-widescreen">
     <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Main Results</h2>
+      <h2 class="title is-3 has-text-centered">Method</h2>
 
-      <div class="columns is-centered">
-        <div class="column is-11">
-          <img src="static\images\graphwrit3r_results_bars_with_detection_v3.svg"
-               class="interpolation-image wide-figure radar-figure"
-               alt="Scene graph evaluation on RIO10">
-        </div>
-      </div>
 
-      <div class="container is-max-desktop section-text-after-figure">
-        <div class="content has-text-justified">
-          <p>
-            On RIO10, GraphWrit3R achieves the best overall scene graph generation performance across
-            object, predicate, and triplet recall. Notably, it does so while remaining GT-free at inference
-            time: unlike methods that are given ground-truth object boxes, GraphWrit3R must jointly detect
-            objects, classify them, and predict their relationships directly from the 3D input. Furthermore, strong object detection results on ScanNet20 show that relational supervision provides a useful learning signal for object grounding and localization.
-          </p>
-        </div>
-      </div>
+  <div class="columns is-centered">
+    <div class="column is-11">
+      <img src="static/images/fig3_method-1.svg"
+           class="interpolation-image wide-figure"
+           alt="GraphWrit3R method overview">
     </div>
+  </div>
+
+  <div class="container is-max-desktop section-text-after-figure">
+    <div class="content has-text-justified">
+      <p>
+        <strong>GraphWrit3R</strong> takes a 3D scene represented as a point cloud, Gaussian Splats,
+        or both, and directly generates a complete 3D scene graph as a structured JSON script.
+        The output contains detected objects, their semantic labels, 3D locations, bounding boxes,
+        orientations, and directed subject-predicate-object relationships. Unlike prior multi-stage
+        pipelines, GraphWrit3R does not first build explicit object proposals or intermediate graph
+        structures, but performs scene graph generation in a single end-to-end latent pipeline.
+      </p>
+
+      <p>
+        Point clouds are encoded by <strong>Sonata</strong>, while Gaussian Splats are encoded by
+        <strong>Chorus</strong>. Both encoders produce sparse voxel tokens on a shared grid, where
+        co-located features can be fused and projected into the input embedding space of an LLM,
+        which autoregressively writes the final JSON scene graph. To make the two modalities compatible,
+        we train with a per-voxel cross-modal alignment loss combining InfoNCE, cosine, and MSE
+        feature-matching terms, enabling one set of weights to operate with point clouds, Gaussian
+        Splats, or both at inference time.
+      </p>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </section>
 
