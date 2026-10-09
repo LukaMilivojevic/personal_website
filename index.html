@@ -1,941 +1,110 @@
-<!DOCTYPE html>
-
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="GraphWrit3R: End-to-End Writing of Scene Graphs for Multi-Modal 3D Scenes">
-  <meta name="keywords"
-        content="3D Scene Graphs, Scene Graph Generation, Gaussian Splatting, Point Clouds, 3D Scene Understanding, Open-vocabulary, Large Language Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GraphWrit3R</title>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <meta name="description" content="A minimal academic project website template with placeholder content.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Research Project Template</title>
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-
-  <script src="./static/js/bulma-carousel.min.js"></script>
-
-  <script src="./static/js/bulma-slider.min.js"></script>
-
-  <script src="./static/js/index.js"></script>
-
   <style>
-    html,
     body {
-      overflow-x: hidden;
-    }
-
-    body {
-      margin: 0;
-    }
-
-    .publication-title-main {
-      font-family: 'Google Sans', 'Noto Sans', sans-serif;
-      font-size: 3.2rem;
-      line-height: 1.08;
-      font-weight: 700;
-      margin-bottom: 0.35rem;
-    }
-
-    .publication-subtitle {
-      font-family: 'Google Sans', 'Noto Sans', sans-serif;
-      font-size: 2rem;
-      line-height: 1.15;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .publication-authors {
+      color: #363636;
+      font-family: system-ui, sans-serif;
       line-height: 1.7;
-      word-break: normal;
-      overflow-wrap: anywhere;
     }
 
-    .affiliations-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 0.25rem 1rem;
-      margin-top: 0.7rem;
-      line-height: 1.5;
+    .template-label {
+      color: #666;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
     }
 
-    .affiliations-row .author-block {
-      margin-right: 0 !important;
-      white-space: normal;
+    .hero-body {
+      padding: 4rem 1.5rem 2rem;
     }
 
-    .logo-strip {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 1.25rem;
+    .project-title {
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.15;
       margin-bottom: 1rem;
     }
 
-    .logo-strip img {
-      width: auto;
-      object-fit: contain;
-      max-width: 90vw;
+    .project-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
-    .logo-strip .logo-insait {
-      height: 52px;
-    }
-
-    .logo-strip .logo-stanford {
-      height: 72px;
-    }
-
-    .logo-strip .logo-ulm {
-      height: 42px;
-    }
-
-    .publication-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .publication-links .link-block {
-      display: inline-flex;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.75rem;
+    .placeholder {
+      background: #fafafa;
+      border: 1px dashed #bbb;
+      border-radius: 8px;
+      color: #666;
+      padding: 3rem 1.5rem;
       text-align: center;
     }
 
-    th {
-      background-color: #f7f7f7;
+    .section {
+      padding: 2rem 1.5rem;
     }
 
-    .tldr-box {
-      background-color: #f5f5f5;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      margin-top: -2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-    }
-
-    .tldr-box h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.25rem;
-      color: #333;
-    }
-
-    .tldr-box ul {
-      margin: 0;
-      color: #555;
-      padding-left: 1.2rem;
-      list-style-type: disc;
-    }
-
-    .wide-figure {
-      width: 100%;
-      max-width: 100%;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .comparison .hero-body,
-    .method .hero-body,
-    .results .hero-body,
-    .qualitative .hero-body,
-    .embodied-planning .hero-body {
-      padding-top: 2.5rem;
-      padding-bottom: 2.5rem;
-    }
-
-    .section-text-after-figure {
-      margin-top: 1.5rem;
-    }
-
-    .teaser-figure {
-      display: block;
-      padding-top: 1.5rem;
-      padding-bottom: 2.5rem;
-    }
-
-    .fig1-scroll {
-      width: 100%;
-      overflow-x: visible;
-      overflow-y: hidden;
-    }
-
-    .fig1-build {
-      position: relative;
-      display: block;
-
-      width: min(100%, 1083px);
-      aspect-ratio: 1083 / 356;
-
-      margin: 0 auto;
-      overflow: hidden;
-
-      min-height: 130px;
-      isolation: isolate;
-    }
-
-    .fig1-build > img.fig1-build-piece {
-      position: absolute;
-      display: block;
-
-      width: var(--fig1-width) !important;
-      height: var(--fig1-height) !important;
-      max-width: none !important;
-
-      opacity: 0;
-      object-fit: fill;
-
-      transform: translate(var(--fig1-from-x, 0), var(--fig1-from-y, 0)) scale(0.985);
-      transform-origin: center;
-
-      animation: fig1-slide-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: var(--fig1-delay, 0s);
-
-      will-change: opacity, transform, clip-path;
-    }
-
-    .fig1-input {
-      left: 0;
-      top: 0;
-      --fig1-width: 15.78%;
-      --fig1-height: 88.48%;
-      --fig1-delay: 0.05s;
-      --fig1-from-x: -0.7rem;
-    }
-
-    .fig1-tokenizer {
-      left: 13.56%;
-      top: 11.8%;
-      --fig1-width: 11.04%;
-      --fig1-height: 64.8%;
-      z-index: 2;
-      --fig1-delay: 0.75s;
-      --fig1-from-x: -0.55rem;
-    }
-
-    .fig1-tokens {
-      left: 22.35%;
-      top: 11.8%;
-      --fig1-width: 10.16%;
-      --fig1-height: 64.6%;
-      z-index: 3;
-      --fig1-delay: 1.45s;
-      --fig1-from-y: 0.55rem;
-    }
-
-    .fig1-llm {
-      left: 29.41%;
-      top: 11.8%;
-      --fig1-width: 11.14%;
-      --fig1-height: 64.78%;
-      z-index: 4;
-      --fig1-delay: 2.15s;
-      --fig1-from-x: 0.55rem;
-    }
-
-    .fig1-model-box {
-      left: 19.85%;
-      top: 0;
-      --fig1-width: 21.63%;
-      --fig1-height: 88.48%;
-      z-index: 1;
-      --fig1-delay: 2.85s;
-      --fig1-from-y: -0.55rem;
-    }
-
-    .fig1-output {
-      left: 38.41%;
-      top: 0;
-      --fig1-width: 61.74%;
-      --fig1-height: 88.48%;
-      z-index: 5;
-      --fig1-delay: 3.55s;
-      --fig1-from-x: 0.7rem;
-    }
-
-    .fig1-claims {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 11.52%;
-      z-index: 10;
-
-      font-family: 'Times New Roman', serif;
-      font-size: clamp(0.68rem, 1.85vw, 1.22rem);
-      font-weight: 700;
-      line-height: 1.15;
-    }
-
-    .fig1-claim {
-      position: absolute;
-      top: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 0.28em;
-
-      white-space: nowrap;
-
-      opacity: 0;
-      transform: translateY(0.45rem);
-      animation: fig1-claim-in 0.45s ease-out forwards;
-      animation-delay: var(--fig1-claim-delay, 0s);
-    }
-
-    .fig1-claim:nth-child(1) {
-      left: 5.7%;
-      width: 31%;
-      --fig1-claim-delay: 4.15s;
-    }
-
-    .fig1-claim:nth-child(2) {
-      left: 39.9%;
-      width: 29%;
-      --fig1-claim-delay: 4.35s;
-    }
-
-    .fig1-claim:nth-child(3) {
-      left: 68.2%;
-      width: 31%;
-      --fig1-claim-delay: 4.55s;
-    }
-
-    .fig1-check {
-      display: inline-flex;
-      width: 1.25em;
-      height: 1.25em;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-
-      border-radius: 999px;
-      background: #3fb34f;
-      color: #fff;
-
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 0.78em;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    @keyframes fig1-slide-in {
-      0% {
-        opacity: 0;
-        clip-path: inset(0 8% 0 0);
-        transform: translate(var(--fig1-from-x, 0), var(--fig1-from-y, 0)) scale(0.985);
-      }
-
-      70% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transform: translate(0, 0) scale(1);
-      }
-    }
-
-    @keyframes fig1-claim-in {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .fig1-build > img.fig1-build-piece,
-      .fig1-claim {
-        animation: none;
-        opacity: 1;
-        transform: none;
-        clip-path: none;
-      }
-    }
-
-    @media screen and (max-width: 768px) {
-      .hero > .hero-body {
-        padding: 2rem 1rem;
-      }
-
-      .publication-title-main {
-        font-size: 2.35rem;
-        line-height: 1.08;
-      }
-
-      .publication-subtitle {
-        font-size: 1.55rem;
-        line-height: 1.16;
-      }
-
-      .publication-authors {
-        font-size: 1.1rem !important;
-        line-height: 1.55;
-      }
-
-      .affiliations-row {
-        font-size: 0.92rem !important;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-      }
-
-      .logo-strip {
-        gap: 12px 18px;
-      }
-
-      .logo-strip .logo-insait {
-        height: 43px;
-      }
-
-      .logo-strip .logo-stanford {
-        height: 56px;
-      }
-
-      .logo-strip .logo-ulm {
-        height: 38px;
-      }
-
-      .tldr-box {
-        margin-top: 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        padding: 1.25rem;
-      }
-
-      .tldr-box ul {
-        padding-left: 1rem;
-      }
-
-      .teaser-figure {
-        padding-top: 0.75rem;
-        padding-bottom: 2rem;
-      }
-
-      .teaser-figure .container {
-        max-width: 100% !important;
-        width: 100% !important;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .fig1-scroll {
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-bottom: 0.75rem;
-      }
-
-      .fig1-build {
-        width: 760px;
-        max-width: none;
-        min-height: 250px;
-      }
-
-      .fig1-claims {
-        font-size: 0.82rem;
-      }
-
-      .content.has-text-justified {
-        text-align: left !important;
-      }
-
-      .abstract .content,
-      .comparison .content,
-      .method .content,
-      .qualitative .content,
-      .results .content {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-    }
-
-    @media screen and (max-width: 420px) {
-      .publication-title-main {
-        font-size: 2.1rem;
-      }
-
-      .publication-subtitle {
-        font-size: 1.35rem;
-      }
-
-      .fig1-build {
-        width: 720px;
-        min-height: 237px;
-      }
-
-      .fig1-claims {
-        font-size: 0.78rem;
-      }
-    }
-    .radar-figure {
-      width: 100%;
-      max-width: none;
-    }
-
-    @media screen and (max-width: 768px) {
-      .radar-figure {
-        width: 100%;
-      }
+    .footer {
+      font-size: 0.875rem;
+      margin-top: 2rem;
+      padding: 2rem 1.5rem;
     }
   </style>
-
 </head>
-
 <body>
+  <main>
+    <header class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop has-text-centered">
+          <p class="template-label">Academic website template</p>
+          <h1 class="project-title">Your Project Title</h1>
+          <p class="project-subtitle">A short subtitle describing your research</p>
+          <p>Author One &middot; Author Two &middot; Author Three</p>
+          <p>Institution or affiliation</p>
+          <p class="mt-5">Placeholder content for a future project.</p>
+          <!-- Add paper, code, and dataset links here when they are available. -->
+        </div>
+      </div>
+    </header>
 
-<section class="hero">
-  <div class="hero-body">
+    <section class="section" aria-labelledby="overview-title">
+      <div class="container is-max-desktop">
+        <h2 id="overview-title" class="title is-4">Overview</h2>
+        <div class="placeholder">Add a project figure or demo here.</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="abstract-title">
+      <div class="container is-max-desktop content">
+        <h2 id="abstract-title" class="title is-4">Abstract</h2>
+        <p>Replace this paragraph with a brief description of the problem, your approach, and the main contribution.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="results-title">
+      <div class="container is-max-desktop content">
+        <h2 id="results-title" class="title is-4">Results</h2>
+        <p>Add your key findings and supporting figures here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-
-
-      <h1 class="publication-title-main">
-        ✍️ GraphWrit3R:
-      </h1>
-
-      <h2 class="publication-subtitle">
-        End-to-End Writing of Scene Graphs for Multi-Modal 3D Scenes
-      </h2>
-
-      <div class="is-size-5 publication-authors">
-        <span class="author-block">
-          <a href="https://www.linkedin.com/in/luka-milivojevic">Luka Milivojevic</a><sup>1</sup>,
-        </span>
-        <span class="author-block">
-          <a href="https://insait.ai/dr-nikola-popovic/">Nikola Popovic</a><sup>1</sup>,
-        </span>
-        <span class="author-block">
-          <a href="https://sayands.github.io/">Sayan Deb Sarkar</a><sup>2</sup>,
-        </span>
-        <span class="author-block">
-          <a href="https://kochsebastian.com/">Sebastian Koch</a><sup>3</sup>,
-        </span>
-        <br>
-        <span class="author-block">
-          <a href="https://ir0.github.io/">Iro Armeni</a><sup>2</sup>,
-        </span>
-        <span class="author-block">
-          <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a><sup>1</sup>,
-        </span>
-        <span class="author-block">
-          <a href="https://insait.ai/dr-danda-paudel/">Danda Pani Paudel</a><sup>1</sup>
-        </span>
-      </div>
-
-      <div class="is-size-6 publication-authors affiliations-row">
-        <span class="author-block">
-          <sup>1</sup>INSAIT, Sofia University "St. Kliment Ohridski"
-        </span>
-        <span class="author-block">
-          <sup>2</sup>Stanford University
-        </span>
-        <span class="author-block">
-          <sup>3</sup>Ulm University
-        </span>
-      </div>
-
-      <div class="logo-strip">
-        <img class="logo-insait" src="static/images/insait.png" alt="INSAIT logo">
-        <img class="logo-stanford" src="static/images/stanford.png" alt="Stanford logo">
-        <img class="logo-ulm" src="static/images/ulm_logo.svg" alt="Ulm logo">
-      </div>
-
-      <div class="column has-text-centered">
-        <div class="publication-links">
-          <span class="link-block">
-            <a href="#"
-               class="external-link button is-normal is-rounded is-dark">
-              <span class="icon">
-                <i class="ai ai-arxiv"></i>
-              </span>
-              <span>arXiv</span>
-            </a>
-          </span>
-
-          <span class="link-block">
-            <a href="#"
-               class="external-link button is-normal is-rounded is-dark">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
-              <span>Code</span>
-            </a>
-          </span>
-
-          <span class="link-block">
-            <a href="#"
-               class="external-link button is-normal is-rounded is-dark">
-              <span class="icon">
-                <span aria-hidden="true">🤗</span>
-              </span>
-              <span>Checkpoint</span>
-            </a>
-          </span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-  </div>
-</section>
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="tldr-box">
-      <h3><strong>TL;DR</strong></h3>
-      <ul>
-        <li>
-          <strong>End-to-end scene graph prediction.</strong>
-          GraphWrit3R directly generates complete 3D scene graphs as structured JSON scripts.
-        </li>
-        <li>
-          <strong>Supports different 3D inputs.</strong>
-          A single model accepts point clouds, 3D Gaussian Splats, or both through a unified voxel-grid fusion design.
-        </li>
-        <li>
-          <strong>No proprietary models.</strong>
-          GraphWrit3R avoids dependencies on proprietary models and ground-truth object annotations at evaluation time, while supporting open-vocabulary querying.
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section teaser-figure">
-  <div class="container is-max-desktop">
-    <div class="has-text-centered fig1-scroll">
-      <div class="fig1-build" role="img"
-           aria-label="GraphWrit3R teaser animation showing inputs, tokenization, language model decoding, JSON output, and 3D scene graph result">
-
-
-    <img src="static/images/fig1_pt1.svg"
-         class="fig1-build-piece fig1-input"
-         alt="">
-
-    <img src="static/images/fig1_pt2.svg"
-         class="fig1-build-piece fig1-tokenizer"
-         alt="">
-
-    <img src="static/images/fig1_pt3.svg"
-         class="fig1-build-piece fig1-tokens"
-         alt="">
-
-    <img src="static/images/fig1_pt4.svg"
-         class="fig1-build-piece fig1-llm"
-         alt="">
-
-    <img src="static/images/fig1_pt5.svg"
-         class="fig1-build-piece fig1-model-box"
-         alt="">
-
-    <img src="static/images/fig1_pt6.svg"
-         class="fig1-build-piece fig1-output"
-         alt="">
-
-    <div class="fig1-claims" aria-hidden="true">
-      <div class="fig1-claim">
-        <span class="fig1-check">&#10003;</span>
-        <span>End-to-End Scene Graph Prediction</span>
-      </div>
-
-      <div class="fig1-claim">
-        <span class="fig1-check">&#10003;</span>
-        <span>Supports Different 3D Inputs</span>
-      </div>
-
-      <div class="fig1-claim">
-        <span class="fig1-check">&#10003;</span>
-        <span>No Proprietary Models</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-  </div>
-</section>
-
-<section class="hero abstract">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Abstract</h2>
-      <div class="content has-text-justified">
-        <p>
-          3D scene graphs provide a structured representation of complex environments by encoding objects,
-          their semantic attributes, and the spatial and functional relationships between them. Current approaches
-          for 3D scene graph generation suffer from several fundamental limitations. They rely on complex multi-stage
-          pipelines with explicit intermediate representations, making systems fragile and prone to error propagation.
-          They assume access to ground-truth object annotations during inference, which deviates from real-world scenarios.
-          They depend on proprietary models, hindering open-source deployment, or incur prohibitively slow inference.
-          We present GraphWrit3R, a simple end-to-end method that takes a 3D point cloud, Gaussian Splats, or a combination
-          of both as input, and directly outputs a complete scene graph as a structured JSON script. The graph lists all
-          objects, their semantic attributes, and the relationships between them, while avoiding all of the above mentioned
-          limitations. The choice of multiple input modalities is purely for versatility, allowing a single set of weights
-          to handle diverse scenarios. Point cloud inputs are encoded via Sonata and Gaussian Splat inputs via Chorus,
-          with both modalities projected onto a shared voxel grid and fused through a novel per-voxel contrastive alignment
-          loss before being decoded by a large language model. As a natural consequence of the LLM, GraphWrit3R also supports
-          open-vocabulary querying. On the 3DSSG benchmark, our method achieves state-of-the-art performance on object class,
-          predicate, and triplet recall, outperforming methods that rely on ground-truth object annotations during inference.
-          We further provide qualitative results and analyze different input modality configurations, contrastive loss
-          formulations, and token fusion strategies.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero comparison">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Comparison to SoTA Methods</h2>
-
-
-  <div class="columns is-centered">
-    <div class="column is-9">
-      <img src="static/images/fig2.gif"
-           class="interpolation-image wide-figure"
-           alt="Comparison to relevant 3D scene graph generation methods">
-    </div>
-  </div>
-
-  <div class="container is-max-desktop section-text-after-figure">
-    <div class="content has-text-justified">
+      <p>This is a website template with placeholder content.</p>
       <p>
-        GraphWrit3R differs from prior 3D scene graph methods by operating as a fully end-to-end
-        latent pipeline. It avoids explicit intermediate predictions, ground-truth object annotations
-        at evaluation time, proprietary model calls, and slow multi-stage processing, while directly
-        generating structured scene graphs from 3D inputs. The comparison above summarizes these
-        differences against relevant methods.
+        Website licensed under
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+        Based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>
+        by Utkarsh Sinha and Keunhong Park.
       </p>
     </div>
-  </div>
-</div>
-
-
-  </div>
-</section>
-
-<section class="hero results">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Main Results</h2>
-
-      <div class="columns is-centered">
-        <div class="column is-11">
-          <img src="static\images\graphwrit3r_results_bars_with_detection_v3.svg"
-               class="interpolation-image wide-figure radar-figure"
-               alt="Scene graph evaluation on RIO10">
-        </div>
-      </div>
-
-      <div class="container is-max-desktop section-text-after-figure">
-        <div class="content has-text-justified">
-          <p>
-            On RIO10, GraphWrit3R achieves the best overall scene graph generation performance across
-            object, predicate, and triplet recall. Notably, it does so while remaining GT-free at inference
-            time: unlike methods that are given ground-truth object boxes, GraphWrit3R must jointly detect
-            objects, classify them, and predict their relationships directly from the 3D input. Furthermore, strong object detection results on ScanNet20 show that relational supervision provides a useful learning signal for object grounding and localization.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero qualitative">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">
-        Qualitative Results: Scene Graph Generation and Open-Vocabulary Querying
-      </h2>
-
-
-  <div class="columns is-centered">
-    <div class="column is-11">
-      <img src="static/images/fig4_demo-1.svg"
-           class="interpolation-image wide-figure"
-           alt="Qualitative scene graph generation and open-vocabulary querying">
-    </div>
-  </div>
-
-  <div class="container is-max-desktop section-text-after-figure">
-    <div class="content has-text-justified">
-      <p>
-        GraphWrit3R directly predicts a structured 3D scene graph from a raw 3D input.
-        The generated graph contains detected object nodes and semantic relationship edges,
-        which can then be used for open-vocabulary querying. Given a natural-language query,
-        we retrieve the corresponding objects and relations by matching against the predicted
-        scene graph labels, enabling spatially grounded interaction with the 3D scene.
-      </p>
-    </div>
-  </div>
-</div>
-
-  </div>
-</section>
-
-<section class="hero embodied-planning">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Embodied Planning with Predicted Scene Graphs</h2>
-
-      <div class="columns is-centered">
-        <div class="column is-11">
-          <img src="static/images/emb_planning.svg"
-               class="interpolation-image wide-figure"
-               alt="Embodied planning with predicted scene graphs">
-        </div>
-      </div>
-
-      <div class="container is-max-desktop section-text-after-figure">
-        <div class="content has-text-justified">
-          <p>
-            Furthermore, we qualitatively demonstrate how the generated scene graph can serve as an
-            explicit grounding representation for embodied planning in 3D scenes. In this example,
-            a robot is instructed to navigate from a safe base pose and open the window closest to the
-            desk with the most monitors. Given the predicted graph, GPT-5.4 identifies the monitor-rich
-            workspace by reasoning over desk-monitor relations, selects the relevant window, and maps the
-            resulting plan back into 3D using predicted object centers, bounding boxes, and spatial
-            relationships. It avoids large obstacles, chooses reachable manipulation poses, and identifies
-            movable chairs that obstruct the path or target interaction. This illustrates how structured
-            scene-graph outputs can support compositional spatial queries such as "the desk with the most
-            monitors," "the closest window," or "chairs blocking the route," and convert them into
-            grounded navigation and manipulation steps.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero method">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Method</h2>
-
-
-  <div class="columns is-centered">
-    <div class="column is-11">
-      <img src="static/images/fig3_method-1.svg"
-           class="interpolation-image wide-figure"
-           alt="GraphWrit3R method overview">
-    </div>
-  </div>
-
-  <div class="container is-max-desktop section-text-after-figure">
-    <div class="content has-text-justified">
-      <p>
-        <strong>GraphWrit3R</strong> takes a 3D scene represented as a point cloud, Gaussian Splats,
-        or both, and directly generates a complete 3D scene graph as a structured JSON script.
-        The output contains detected objects, their semantic labels, 3D locations, bounding boxes,
-        orientations, and directed subject-predicate-object relationships. Unlike prior multi-stage
-        pipelines, GraphWrit3R does not first build explicit object proposals or intermediate graph
-        structures, but performs scene graph generation in a single end-to-end latent pipeline.
-      </p>
-
-      <p>
-        Point clouds are encoded by <strong>Sonata</strong>, while Gaussian Splats are encoded by
-        <strong>Chorus</strong>. Both encoders produce sparse voxel tokens on a shared grid, where
-        co-located features can be fused and projected into the input embedding space of an LLM,
-        which autoregressively writes the final JSON scene graph. To make the two modalities compatible,
-        we train with a per-voxel cross-modal alignment loss combining InfoNCE, cosine, and MSE
-        feature-matching terms, enabling one set of weights to operate with point clouds, Gaussian
-        Splats, or both at inference time.
-      </p>
-    </div>
-  </div>
-</div>
-
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre><code>@article{milivojevic2026graphwrit3r,
-  title   = {GraphWrit3R: End-to-End Writing of Scene Graphs for Multi-Modal 3D Scenes},
-  author  = {Milivojevic, Luka and Popovic, Nikola and Deb Sarkar, Sayan and Koch, Sebastian and Armeni, Iro and Van Gool, Luc and Paudel, Danda Pani},
-  journal = {arXiv preprint},
-  year    = {2026}
-}</code></pre>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-              Creative Commons Attribution-ShareAlike 4.0 International License
-            </a>.
-          </p>
-          <p>
-            It borrows the source code of
-            <a href="https://github.com/nerfies/nerfies.github.io">this website</a>.
-            We would like to thank Utkarsh Sinha and Keunhong Park.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>
